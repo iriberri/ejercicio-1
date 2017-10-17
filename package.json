@@ -11,8 +11,7 @@
 	},
 	"author": "",
 	"license": "MIT",
-	"dependencies": {},
-	"devDependencies": {
+	"dependencies": {
 		"browserify": "^14.4.0",
 		"chai": "^4.1.2",
 		"eslint": "^4.9.0",
