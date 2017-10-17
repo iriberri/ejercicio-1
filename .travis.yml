@@ -1,6 +1,6 @@
 language: node
 node_js:
-	- "8"
+  - "8"
 script:
-	- npm run test
-	- npm run lint
+  - npm run test
+  - npm run lint
