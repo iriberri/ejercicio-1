@@ -1,4 +1,4 @@
-# Entorno cliente: ejercicio 1 
+# Entorno cliente: ejercicio 1 [![Estado de compilación][travis-image]][travis-url]
 
 Este es el Ejercicio 1 del Grupo 1 de la asignatura de Entorno Cliente.
 
@@ -37,3 +37,6 @@ Para ejecutar los tests, hay que ejecutar el comando:
 ```sh
 npm run test
 ```
+
+[travis-image]: https://travis-ci.org/adaits-2daw-cliente-grupo1/ejercicio-1.svg?branch=master
+[travis-url]: https://travis-ci.org/adaits-2daw-cliente-grupo1/ejercicio-1
