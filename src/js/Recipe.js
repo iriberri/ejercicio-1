@@ -34,8 +34,8 @@ class Recipe {
 			}else {
 				this.idAuthor = idAuthor;
 			}
-		}catch {
-
+		} catch (err) {
+			alert(err);
 		}
 		this.ingredients = ingredients;
 	}
