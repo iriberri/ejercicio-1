@@ -1,35 +1,35 @@
 
 class Recipe {
 	constructor(idRecipe, ingredients, steps, typeOfFood, origin, idAuthor) {
-		let tipoDatoInvalido = "El tipo de datos es inválido";
-		try{
-			if (typeof idRecipe != "number"){
+		const tipoDatoInvalido = "El tipo de datos es inválido";
+		try {
+			if (typeof idRecipe !== typeof 1) {
 				throw tipoDatoInvalido;
 			}else {
 				this.idRecipe = idRecipe;
 			}
-			//@TODO controlar valor dentro de los arrays
-			if (ingredients instanceof Array){
+			// @TODO controlar valor dentro de los arrays
+			if (ingredients instanceof Array) {
 				throw tipoDatoInvalido;
 			}else {
-				this.idRecipe = idRecipe;
+				this.ingredients = ingredients;
 			}
-			if (steps instanceof Array){
+			if (steps instanceof Array) {
 				throw tipoDatoInvalido;
 			}else {
 				this.steps = steps;
 			}
-			if (typeof typeOfFood != String){
+			if (typeof typeOfFood !== typeof "") {
 				throw tipoDatoInvalido;
 			}else {
 				this.typeOfFood = typeOfFood;
 			}
-			if (typeof origin != String){
+			if (typeof origin !== typeof "") {
 				throw tipoDatoInvalido;
 			}else {
 				this.origin = origin;
 			}
-			if (typeof idAuthor != "number"){
+			if (typeof idAuthor !== typeof "") {
 				throw tipoDatoInvalido;
 			}else {
 				this.idAuthor = idAuthor;
@@ -37,6 +37,7 @@ class Recipe {
 		} catch (err) {
 			alert(err);
 		}
-		this.ingredients = ingredients;
 	}
 }
+
+module.exports = Recipe;
