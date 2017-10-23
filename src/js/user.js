@@ -1,6 +1,8 @@
 /**
  * Created by Fran on 23/10/2017.
  */
+
+// Clase usuario con atributos id y nombre.
 class User {
 	constructor(id, nombre) {
 		const datoInvalido = "El tipo de dato es invalido";
