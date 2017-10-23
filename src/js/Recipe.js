@@ -29,7 +29,7 @@ class Recipe {
 				throw tipoDatoInvalido;
 			}
 			for (let i = 0; i < ingredients.length; i += i) {
-				if (!ingredients[i] instanceof Ingredient) {
+				if (!(ingredients[i] instanceof Ingredient)) {
 					throw tipoDatoInvalido;
 				}
 			}
