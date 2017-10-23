@@ -1,9 +1,11 @@
-// // Dependencias externas
-// const { expect } = require("chai");
-//
-// // Dependencias del proyecto
-// const Recipe = require("./Recipe");
+// Dependencias externas
+const { expect } = require("chai");
+
+// Dependencias del proyecto
+const Recipe = require("./Recipe");
 
 describe("La prueba para Recipe.js", () => {
-	it("deberia instanciar correctamente la el objeto de tipo Recipe");
+	it("deberia instanciar correctamente la el objeto de tipo Recipe", () => {
+		expect(sumar(1, 2)).to.equal(3);
+	});
 });
