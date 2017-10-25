@@ -75,10 +75,12 @@ describe("Rating", () => {
 			expect(idRecipe2Error).to.throw();
 		});
 		it("Debería lanzar una excepción si se le pasa un atributo undefined", () => {
+			/* eslint-disable */
 			const undefinedError = () => new Rating(
 				undefined, undefined, undefined,
 				undefined, undefined
 			);
+			/* eslint-enable */
 			expect(undefinedError).to.throw();
 		});
 		it("Debería lanzar una excepción si se le pasa un atributo null", () => {
