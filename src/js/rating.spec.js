@@ -77,7 +77,7 @@ describe("Rating", () => {
 		it("Debería lanzar una excepción si se le pasa un atributo undefined", () => {
 			const undefinedError = () => new Rating(
 				undefined, undefined, undefined,
-				undefined, undefined,
+				undefined, undefined
 			);
 			expect(undefinedError).to.throw();
 		});
