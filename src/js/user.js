@@ -22,6 +22,7 @@ class User {
 		if (typeof nombre !== "string" || nombre.length === 0) {
 			throw datoInvalido;
 		} else {
+			// Se eliminan todos los espacios en blanco del nombre.
 			this.nombre = nombre.trim().replace(/([ t]+(?=[ t])|^s+|s+$)/g, "");
 		}
 	}

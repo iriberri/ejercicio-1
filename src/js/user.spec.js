@@ -25,7 +25,7 @@ describe("User", () => {
 			expect(user.id).to.equal(1);
 		});
 		/**
-		 * Comprueba que al recibir una cadena con espacios de sobra los elimina
+		 * Comprueba que al recibir una cadena con espacios de sobra los elimina.
 		 */
 		it("user.nombre deberia devolver Fran Molina", () => {
 			expect(user.nombre).to.equal("Fran Molina");
