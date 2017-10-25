@@ -9,7 +9,7 @@ class Ingredient {
 	 * Constructor de la clase Ingredient que recibe id y nombre,
 	 *
 	 * @param id Integer
-	 * @param nombre String
+	 * @param name String
 	 */
 	constructor(id, name) {
 		const datoInvalido = "El tipo de dato no es valido";
@@ -23,7 +23,7 @@ class Ingredient {
 		}
 
 		/*
-		Comprobamos que el nombre sea una cadena y que no sea una cadena vaica.
+		Comprobamos que el name sea una cadena y que no sea una cadena vaica.
 		 */
 		if (typeof name !== "string" || name.length <= 0) {
 			throw datoInvalido;
