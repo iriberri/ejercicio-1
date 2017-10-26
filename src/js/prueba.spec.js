@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 // Dependencias externas
 const { expect } = require("chai");
 
