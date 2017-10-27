@@ -17,7 +17,7 @@ describe("Recipe:", () => {
 			recipe = new Recipe(1, ingredients, steps, "mexicana", "china", 1);
 		});
 		it("El id debería de devolver 1", () => {
-			expect(recipe.id).to.equals(1);
+			expect(recipe.idRecipe).to.equals(1);
 		});
 		it("El ingrediente deberia ser igual a \"'1,' leche\"", () => {
 			expect(recipe.ingredients).to.equals(ingredients);
@@ -74,11 +74,11 @@ describe("Recipe:", () => {
 		});
 		it("Debería saltar una excepcion si el idAuthor es negativo", () => {
 			const idAuthorError = () => new Recipe(1, ingredients, steps, "mexicana", "china", -1);
-			expect(idAuthorError()).to.throw();
+			expect(idAuthorError).to.throw();
 		});
 		it("Debería saltar una excepcion si el idAuthor no es un numero", () => {
 			const idAuthorError2 = () => new Recipe(1, ingredients, steps, "mexicana", "china", "a");
-			expect(idAuthorError2()).to.throw();
+			expect(idAuthorError2).to.throw();
 		});
 	});
 });
