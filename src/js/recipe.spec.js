@@ -1,5 +1,5 @@
 // // Dependencias externas
-const {expect} = require("chai");
+const { expect } = require("chai");
 //
 // // Dependencias del proyecto
 const Recipe = require("./recipe");
