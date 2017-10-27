@@ -1,3 +1,5 @@
+const ingredient = require("./ingredient");
+
 /**
  * Creamos la clase receta.
  */
@@ -18,18 +20,18 @@ class Recipe {
 		const tipoDatoInvalido = "El tipo de datos es inválido";
 		const datosInsuficinetes = "Datos insuficientes";
 		// Controlamos dato idRecipe
-		if (typeof idRecipe !== typeof 1) {
-			throw tipoDatoInvalido;
-		} else {
+		if (typeof idRecipe === typeof 1 && idRecipe > 0) {
 			this.idRecipe = idRecipe;
+		} else {
+			throw tipoDatoInvalido;
 		}
 		// Controlamos dato ingredients
 		if (ingredients instanceof Array) {
 			if (ingredients.length < 3) {
-				throw tipoDatoInvalido;
+				throw datosInsuficinetes;
 			}
 			for (let i = 0; i < ingredients.length; i += i) {
-				if (!(ingredients[i] instanceof Ingredient)) {
+				if (!(ingredients[i] instanceof ingredient)) {
 					throw tipoDatoInvalido;
 				}
 			}
@@ -53,22 +55,22 @@ class Recipe {
 			throw tipoDatoInvalido;
 		}
 		// Controlamos dato typeOfFood
-		if (typeof typeOfFood !== typeof "") {
-			throw tipoDatoInvalido;
-		} else {
+		if (typeof typeOfFood === typeof "") {
 			this.typeOfFood = typeOfFood;
+		} else {
+			throw tipoDatoInvalido;
 		}
 		// Controlamos dato origin
-		if (typeof origin !== typeof "") {
-			throw tipoDatoInvalido;
-		} else {
+		if (typeof origin === typeof "") {
 			this.origin = origin;
+		} else {
+			throw tipoDatoInvalido;
 		}
 		// Controlamos dato idAuthor
-		if (typeof idAuthor !== typeof 1) {
-			throw tipoDatoInvalido;
-		} else {
+		if (typeof idAuthor === typeof 1 && idAuthor > 0) {
 			this.idAuthor = idAuthor;
+		} else {
+			throw tipoDatoInvalido;
 		}
 	}
 }
