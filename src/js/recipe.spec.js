@@ -35,7 +35,7 @@ describe("Recipe:", () => {
 			expect(recipe.idAuthor).to.equals(1);
 		});
 	});
-	describe("", () => {
+	describe("Prueba de excepciones", () => {
 		it("Deberia saltar una exepcion si el id no es un numero", () => {
 			const idError = () => new Recipe("", ingredients, steps, "mexicana", "china", 1);
 			expect(idError).to.throw();
