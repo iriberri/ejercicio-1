@@ -72,7 +72,7 @@ describe("appState", () => {
 				expect(() => addRecipeToState({ hola: "mundo" })).to.throw();
 				expect(() => addRecipeToState(dummyRating)).to.throw();
 				expect(() => addRecipeToState(dummyUser)).to.throw();
-			},
+			}
 		);
 
 		it("addRatingToState debería añadir valoraciones", () => {
@@ -88,7 +88,7 @@ describe("appState", () => {
 				expect(() => addRatingToState({ hola: "mundo" })).to.throw();
 				expect(() => addRatingToState(dummyRecipe)).to.throw();
 				expect(() => addRatingToState(dummyUser)).to.throw();
-			},
+			}
 		);
 
 		it("addUserToState debería añadir usuarios", () => {
@@ -104,7 +104,7 @@ describe("appState", () => {
 				expect(() => addUserToState({ hola: "mundo" })).to.throw();
 				expect(() => addUserToState(dummyRecipe)).to.throw();
 				expect(() => addUserToState(dummyRating)).to.throw();
-			},
+			}
 		);
 	});
 });
