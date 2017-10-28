@@ -38,7 +38,7 @@ describe("appState", () => {
 			dummySteps,
 			"mexicana",
 			"china",
-			1,
+			1
 		);
 		dummyUser = new User(1, "Pablo");
 		dummyRating = new Rating(
@@ -46,7 +46,7 @@ describe("appState", () => {
 			"Me encanta",
 			10,
 			1,
-			1,
+			1
 		);
 	});
 

@@ -14,6 +14,13 @@
 		"quotes": [
 			"error",
 			"double"
+		],
+		"comma-dangle": [
+			"error",
+			"only-multiline",
+			{
+				"functions": "never"
+			}
 		]
 	}
 }
