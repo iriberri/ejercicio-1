@@ -10,18 +10,24 @@ class Recipe {
 	 * y si es de un tipo incorrecto al que queremos lanzamos una excepcion.
 	 * Si es correcto, se setea el parámetro.
 	 * @param idRecipe Integer
+	 * @param name String
 	 * @param ingredients Array[Ingredients]
 	 * @param steps Array[Strings]
 	 * @param typeOfFood String
 	 * @param origin String
 	 * @param idAuthor Integer
 	 */
-	constructor(idRecipe, ingredients, steps, typeOfFood, origin, idAuthor) {
+	constructor(idRecipe, name, ingredients, steps, typeOfFood, origin, idAuthor) {
 		const tipoDatoInvalido = "El tipo de datos es inválido";
 		const datosInsuficinetes = "Datos insuficientes";
 		// Controlamos dato idRecipe
 		if (typeof idRecipe === typeof 1 && idRecipe > 0) {
 			this.idRecipe = idRecipe;
+		} else {
+			throw tipoDatoInvalido;
+		}
+		if (typeof name === typeof "") {
+			this.name = name.trim();
 		} else {
 			throw tipoDatoInvalido;
 		}

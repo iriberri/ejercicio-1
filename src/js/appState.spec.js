@@ -34,6 +34,7 @@ describe("appState", () => {
 		dummySteps = ["a", "b", "c", "d", "f", "g"];
 		dummyRecipe	= new Recipe(
 			1,
+			"poderosa",
 			dummyIngredients,
 			dummySteps,
 			"mexicana",

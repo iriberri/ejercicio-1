@@ -21,10 +21,13 @@ describe("Recipe:", () => {
 				{ ingredient: new Ingredient(4, "asuca"), quantity: "30g" },
 				{ ingredient: new Ingredient(5, "sumo naranja"), quantity: "400g" }];
 			steps = ["a", "b", "c", "d", "f", "g"];
-			recipe = new Recipe(1, ingredients, steps, "mexicana", "china", 1);
+			recipe = new Recipe(1, "poderosa", ingredients, steps, "mexicana", "china", 1);
 		});
 		it("El id debería de devolver 1", () => {
 			expect(recipe.idRecipe).to.equals(1);
+		});
+		it("deveria devolver 'poderosa'", () => {
+			expect(recipe.name).to.equals("poderosa");
 		});
 		it("El ingrediente deberia ser igual a \"'1,' leche\"", () => {
 			expect(recipe.ingredients).to.equals(ingredients);
@@ -55,6 +58,10 @@ describe("Recipe:", () => {
 		it("Deberia saltar una exepcion si el id no es un numero", () => {
 			const idError = () => new Recipe("", ingredients, steps, "mexicana", "china", 1);
 			expect(idError).to.throw();
+		});
+		it("Debería saltar una excepcion si name no es una cadena", () => {
+			const nameError = () => new Recipe(1, 1, ingredients, steps, "mexicana", "china", 1);
+			expect(nameError).to.throw();
 		});
 		it("Debería saltar una excepcion si el id es negativo", () => {
 			const idError2 = () => new Recipe(-1, ingredients, steps, "mexicana", "china", 1);
