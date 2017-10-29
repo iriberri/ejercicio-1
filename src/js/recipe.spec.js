@@ -45,6 +45,9 @@ describe("Recipe:", () => {
 			expect(recipe.idAuthor).to.equals(1);
 		});
 	});
+	/**
+	 * Test de excepciones
+	 */
 	describe("Prueba de excepciones", () => {
 		before(() => {
 			ingredients = [
