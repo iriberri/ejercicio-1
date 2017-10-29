@@ -12,6 +12,8 @@ let dummySteps;
 let dummySteps2;
 let dummyRecipe1;
 let dummyRecipe2;
+
+
 /**
  * Pruebas de la funcion getRecipesByNameOrSteps.
  */
@@ -58,6 +60,12 @@ describe("getRecipesByNameOrSteps: ", () => {
 		});
 		it("No debería de devolvernos nada", () => {
 			expect(getRecipesByNameOrSteps("asdasd")).to.have.length(0);
+		});
+		it("Debería ser un array", () => {
+			expect(getRecipesByNameOrSteps("yogu")).to.be.an("array");
+		});
+		it("No tiene valores nulos", () => {
+			expect(getRecipesByNameOrSteps("yogu")).to.not.include(null);
 		});
 	});
 });
