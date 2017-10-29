@@ -38,8 +38,8 @@ class Recipe {
 				for (let i = 0; i < ingredients.length; i += 1) {
 					if (!(ingredients[i].ingredient instanceof Ingredient) || typeof ingredients[i].quantity !== typeof "") {
 						throw tipoDatoInvalido;
-					} else {
-
+					} if (ingredients[i].quantity.length <= 0) {
+						throw datosInsuficinetes;
 					}
 				}
 			} else {
