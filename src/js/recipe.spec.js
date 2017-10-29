@@ -6,18 +6,31 @@ const Recipe = require("./recipe");
 const Ingredient = require("./ingredient");
 
 let recipe;
-const ingredients = [new Ingredient(1, "leche"), new Ingredient(2, "yogu"), new Ingredient(3, "porvo"), new Ingredient(4, "asuca"), new Ingredient(5, "sumo naranja")];
-const steps = ["a", "b", "c", "d", "f", "g"];
+let ingredients;
+let ingredients2;
+let ingredients3;
+let ingredients4;
+let steps;
 /**
  * Test de la clase Recipe
  */
 describe("Recipe:", () => {
 	describe("Atributos de la clase Recipe", () => {
 		before(() => {
-			recipe = new Recipe(1, ingredients, steps, "mexicana", "china", 1);
+			ingredients = [
+				{ ingredient: new Ingredient(1, "leche"), quantity: "200 g" },
+				{ ingredient: new Ingredient(2, "yogu"), quantity: "10g" },
+				{ ingredient: new Ingredient(3, "porvo"), quantity: "20g" },
+				{ ingredient: new Ingredient(4, "asuca"), quantity: "30g" },
+				{ ingredient: new Ingredient(5, "sumo naranja"), quantity: "400g" }];
+			steps = ["a", "b", "c", "d", "f", "g"];
+			recipe = new Recipe(1, "poderosa", ingredients, steps, "mexicana", "china", 1);
 		});
 		it("El id debería de devolver 1", () => {
 			expect(recipe.idRecipe).to.equals(1);
+		});
+		it("deveria devolver 'poderosa'", () => {
+			expect(recipe.name).to.equals("poderosa");
 		});
 		it("El ingrediente deberia ser igual a \"'1,' leche\"", () => {
 			expect(recipe.ingredients).to.equals(ingredients);
@@ -35,10 +48,38 @@ describe("Recipe:", () => {
 			expect(recipe.idAuthor).to.equals(1);
 		});
 	});
+	/**
+	 * Test de excepciones
+	 */
 	describe("Prueba de excepciones", () => {
+		before(() => {
+			ingredients = [
+				{ ingredient: new Ingredient(1, "leche"), quantity: "200 g" },
+				{ ingredient: new Ingredient(2, "yogu"), quantity: "10g" },
+				{ ingredient: new Ingredient(3, "porvo"), quantity: "20g" },
+				{ ingredient: new Ingredient(4, "asuca"), quantity: "30g" },
+				{ ingredient: new Ingredient(5, "sumo naranja"), quantity: "400g" }];
+			ingredients2 = [
+				{ ingredient: null, quantity: "200 g" },
+				{ ingredient: new Ingredient(2, "yogu"), quantity: "10g" },
+				{ ingredient: new Ingredient(3, "porvo"), quantity: "20g" },
+				{ ingredient: new Ingredient(4, "asuca"), quantity: "30g" },
+				{ ingredient: new Ingredient(5, "sumo naranja"), quantity: "400g" }];
+			ingredients3 = [
+				{ ingredient: new Ingredient(1, "leche"), quantity: null },
+				{ ingredient: new Ingredient(2, "yogu"), quantity: "10g" },
+				{ ingredient: new Ingredient(3, "porvo"), quantity: "20g" },
+				{ ingredient: new Ingredient(4, "asuca"), quantity: "30g" },
+				{ ingredient: new Ingredient(5, "sumo naranja"), quantity: "400g" }];
+			steps = ["a", "b", "c", "d", "f", "g"];
+		});
 		it("Deberia saltar una exepcion si el id no es un numero", () => {
 			const idError = () => new Recipe("", ingredients, steps, "mexicana", "china", 1);
 			expect(idError).to.throw();
+		});
+		it("Debería saltar una excepcion si name no es una cadena", () => {
+			const nameError = () => new Recipe(1, 1, ingredients, steps, "mexicana", "china", 1);
+			expect(nameError).to.throw();
 		});
 		it("Debería saltar una excepcion si el id es negativo", () => {
 			const idError2 = () => new Recipe(-1, ingredients, steps, "mexicana", "china", 1);
@@ -52,8 +93,20 @@ describe("Recipe:", () => {
 			const ingredientsError2 = () => new Recipe(1, ingredients.splice(-1, 1), steps, "mexicana", "china", 1);
 			expect(ingredientsError2).to.throw();
 		});
-		it("Debería saltar una excepcion si el contenido del array ingredients no son Ingredients", () => {
+		it("Debería saltar una excepcion si el contenido del array ingredients no son Ingredients y cadena", () => {
 			const ingredientsError3 = () => new Recipe(1, steps, steps, "mexicana", "china", 1);
+			expect(ingredientsError3).to.throw();
+		});
+		it("Debería saltar una excepcion si Ingredient es null", () => {
+			const ingredientsError3 = () => new Recipe(1, ingredients2, steps, "mexicana", "china", 1);
+			expect(ingredientsError3).to.throw();
+		});
+		it("Debería saltar una excepcion si quantity es null", () => {
+			const ingredientsError3 = () => new Recipe(1, ingredients3, steps, "mexicana", "china", 1);
+			expect(ingredientsError3).to.throw();
+		});
+		it("Debería saltar una excepcion si la cantidad está vacía", () => {
+			const ingredientsError3 = () => new Recipe(1, ingredients4, steps, "mexicana", "china", 1);
 			expect(ingredientsError3).to.throw();
 		});
 		it("Debería saltar una excepcion si el array steps es menor a 5", () => {
@@ -82,3 +135,4 @@ describe("Recipe:", () => {
 		});
 	});
 });
+

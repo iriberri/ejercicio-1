@@ -1,4 +1,4 @@
-const ingredient = require("./ingredient");
+const Ingredient = require("./ingredient");
 
 /**
  * Creamos la clase receta.
@@ -10,13 +10,14 @@ class Recipe {
 	 * y si es de un tipo incorrecto al que queremos lanzamos una excepcion.
 	 * Si es correcto, se setea el parámetro.
 	 * @param idRecipe Integer
+	 * @param name String
 	 * @param ingredients Array[Ingredients]
 	 * @param steps Array[Strings]
 	 * @param typeOfFood String
 	 * @param origin String
 	 * @param idAuthor Integer
 	 */
-	constructor(idRecipe, ingredients, steps, typeOfFood, origin, idAuthor) {
+	constructor(idRecipe, name, ingredients, steps, typeOfFood, origin, idAuthor) {
 		const tipoDatoInvalido = "El tipo de datos es inválido";
 		const datosInsuficinetes = "Datos insuficientes";
 		// Controlamos dato idRecipe
@@ -25,13 +26,20 @@ class Recipe {
 		} else {
 			throw tipoDatoInvalido;
 		}
+		if (typeof name === typeof "") {
+			this.name = name.trim();
+		} else {
+			throw tipoDatoInvalido;
+		}
 		// Controlamos dato ingredients
 		// Tiene que ser un array  de 3 o más Ingredients
 		if (ingredients instanceof Array) {
 			if (ingredients.length > 3) {
 				for (let i = 0; i < ingredients.length; i += 1) {
-					if (!(ingredients[i] instanceof ingredient)) {
+					if (!(ingredients[i].ingredient instanceof Ingredient) || typeof ingredients[i].quantity !== typeof "") {
 						throw tipoDatoInvalido;
+					} if (ingredients[i].quantity.length <= 0) {
+						throw datosInsuficinetes;
 					}
 				}
 			} else {
