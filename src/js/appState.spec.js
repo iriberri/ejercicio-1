@@ -15,6 +15,7 @@ const {
 	addRecipeToState,
 	addRatingToState,
 	addUserToState,
+	replaceWholeState
 } = require("./appState");
 
 describe("appState", () => {
@@ -107,5 +108,20 @@ describe("appState", () => {
 				expect(() => addUserToState(dummyRating)).to.throw();
 			}
 		);
+	});
+
+	describe("Funciones para modificar el estado", () => {
+		it("replaceWholeState debería remplazar el estado", () => {
+			replaceWholeState({
+				recipes: [],
+				ratings: [],
+				users: [dummyUser],
+			});
+
+			const state = getState();
+			expect(state.recipes).to.be.an("Array").that.is.empty;
+			expect(state.ratings).to.be.an("Array").that.is.empty;
+			expect(state.users).to.be.an("Array").that.contains(dummyUser);
+		});
 	});
 });

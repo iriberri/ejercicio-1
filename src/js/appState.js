@@ -68,6 +68,19 @@ function addUserToState(user) {
 	state = newState;
 }
 
+/**
+ * Reemplaza el estado actual por un nuevo estado.
+ *
+ * ¡ATENCIÓN!
+ * Esta función solo debe usarse al cargar el estado de la apliación desde el
+ * localStorage. No se debe usar en otro caso bajo ningún concepto.
+ *
+ * @param nextState {State} El próximo estado
+ */
+function replaceWholeState(nextState) {
+	state = nextState;
+}
+
 // TODO crear funciones para modificar y borrar
 
 module.exports = {
@@ -75,4 +88,5 @@ module.exports = {
 	addRecipeToState,
 	addRatingToState,
 	addUserToState,
+	replaceWholeState
 };
