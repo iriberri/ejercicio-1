@@ -1,6 +1,6 @@
-const Rating = require("./rating");
-const Recipe = require("./recipe");
-const User = require("./user");
+const Rating = require("./model/Rating");
+const Recipe = require("./model/Recipe");
+const User = require("./model/User");
 
 /**
  * @typedef {object} State

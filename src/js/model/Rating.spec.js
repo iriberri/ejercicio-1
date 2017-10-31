@@ -2,7 +2,7 @@
 const { expect } = require("chai");
 
 // Dependencias del proyecto
-const Rating = require("./rating");
+const Rating = require("./Rating");
 
 let rating;
 /**

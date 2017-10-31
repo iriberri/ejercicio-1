@@ -3,7 +3,7 @@
  */
 const { expect } = require("chai");
 
-const User = require("./user");
+const User = require("./User");
 
 let user;
 
