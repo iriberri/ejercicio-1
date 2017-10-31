@@ -6,10 +6,10 @@
 const { expect } = require("chai");
 
 // Dependencias del proyecto
-const Rating = require("./rating");
-const Recipe = require("./recipe");
-const User = require("./user");
-const Ingredient = require("./ingredient");
+const Rating = require("./model/Rating");
+const Recipe = require("./model/Recipe");
+const User = require("./model/User");
+const Ingredient = require("./model/Ingredient");
 const {
 	getState,
 	addRecipeToState,
