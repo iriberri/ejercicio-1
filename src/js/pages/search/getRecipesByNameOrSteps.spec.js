@@ -1,8 +1,8 @@
 const { expect } = require("chai");
 
 // Dependencias del proyecto
-const Recipe = require("../../recipe");
-const Ingredient = require("../../ingredient");
+const Recipe = require("../../model/Recipe");
+const Ingredient = require("../../model/Ingredient");
 const { addRecipeToState } = require("../../appState");
 const getRecipesByNameOrSteps = require("./getRecipesByNameOrSteps");
 

@@ -7,7 +7,7 @@
 const { expect } = require("chai");
 
 // Dependencias del proyecto
-const Ingredient = require("./ingredient");
+const Ingredient = require("./Ingredient");
 
 let ingredient;
 

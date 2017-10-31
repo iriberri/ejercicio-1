@@ -17,7 +17,7 @@ class Ingredient {
 		Comprobamos que el id sea un numero y no sea menor que 0.
 		 */
 		if (typeof id !== "number" || id < 0) {
-			throw datoInvalido;
+			throw new Error(datoInvalido);
 		} else {
 			this.id = id;
 		}
@@ -26,7 +26,7 @@ class Ingredient {
 		Comprobamos que el name sea una cadena y que no sea una cadena vaica.
 		 */
 		if (typeof name !== "string" || name.length <= 0) {
-			throw datoInvalido;
+			throw new Error(datoInvalido);
 		} else {
 			// Expresion regular que elimina los espacios en blanco.
 			this.name = name.trim().replace(/([ t]+(?=[ t])|^s+|s+$)/g, "");

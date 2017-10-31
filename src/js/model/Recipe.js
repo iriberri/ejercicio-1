@@ -1,4 +1,4 @@
-const Ingredient = require("./ingredient");
+const Ingredient = require("./Ingredient");
 
 /**
  * Creamos la clase receta.
@@ -24,12 +24,12 @@ class Recipe {
 		if (typeof idRecipe === typeof 1 && idRecipe > 0) {
 			this.idRecipe = idRecipe;
 		} else {
-			throw tipoDatoInvalido;
+			throw new Error(tipoDatoInvalido);
 		}
 		if (typeof name === typeof "") {
 			this.name = name.trim();
 		} else {
-			throw tipoDatoInvalido;
+			throw new Error(tipoDatoInvalido);
 		}
 		// Controlamos dato ingredients
 		// Tiene que ser un array  de 3 o más Ingredients
@@ -37,17 +37,17 @@ class Recipe {
 			if (ingredients.length > 3) {
 				for (let i = 0; i < ingredients.length; i += 1) {
 					if (!(ingredients[i].ingredient instanceof Ingredient) || typeof ingredients[i].quantity !== typeof "") {
-						throw tipoDatoInvalido;
+						throw new Error(tipoDatoInvalido);
 					} if (ingredients[i].quantity.length <= 0) {
-						throw datosInsuficinetes;
+						throw new Error(datosInsuficinetes);
 					}
 				}
 			} else {
-				throw datosInsuficinetes;
+				throw new Error(datosInsuficinetes);
 			}
 			this.ingredients = ingredients;
 		} else {
-			throw tipoDatoInvalido;
+			throw new Error(tipoDatoInvalido);
 		}
 		// Controlamos dato steps
 		// Tiene que ser una rray de 5 o más cadenas
@@ -55,33 +55,33 @@ class Recipe {
 			if (steps.length > 4) {
 				for (let i = 0; i < steps.length; i += 1) {
 					if (typeof steps[i] !== typeof "") {
-						throw tipoDatoInvalido;
+						throw new Error(tipoDatoInvalido);
 					}
 				}
 			} else {
-				throw datosInsuficinetes;
+				throw new Error(datosInsuficinetes);
 			}
 			this.steps = steps;
 		} else {
-			throw tipoDatoInvalido;
+			throw new Error(tipoDatoInvalido);
 		}
 		// Controlamos dato typeOfFood
 		if (typeof typeOfFood === typeof "") {
 			this.typeOfFood = typeOfFood.trim();
 		} else {
-			throw tipoDatoInvalido;
+			throw new Error(tipoDatoInvalido);
 		}
 		// Controlamos dato origin
 		if (typeof origin === typeof "") {
 			this.origin = origin.trim();
 		} else {
-			throw tipoDatoInvalido;
+			throw new Error(tipoDatoInvalido);
 		}
 		// Controlamos dato idAuthor
 		if (typeof idAuthor === typeof 1 && idAuthor > 0) {
 			this.idAuthor = idAuthor;
 		} else {
-			throw tipoDatoInvalido;
+			throw new Error(tipoDatoInvalido);
 		}
 	}
 }
