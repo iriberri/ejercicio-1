@@ -9,12 +9,14 @@ const User = require("./user");
  * @property {User[]} users
  */
 
-/** @type State */
-let state = {
+const DEFAULT_STATE = Object.freeze({
 	recipes: [],
 	ratings: [],
 	users: [],
-};
+});
+
+/** @type State */
+let state = DEFAULT_STATE;
 
 /**
  * @returns State Una copia del estado de la aplicación. El estado de la
@@ -23,7 +25,16 @@ let state = {
  * funciones proporcionadas en appState.js
  */
 function getState() {
-	return Object.assign({}, state);
+	const clone = classInstance => Object.assign(
+		Object.create(Object.getPrototypeOf(classInstance)),
+		classInstance
+	);
+
+	return {
+		recipes: state.recipes.map(clone),
+		ratings: state.ratings.map(clone),
+		users: state.users.map(clone)
+	};
 }
 
 /**
@@ -64,7 +75,80 @@ function addUserToState(user) {
 	}
 
 	const newState = getState();
-	newState.users = [...state.ratings, user];
+	newState.users = [...state.users, user];
+	state = newState;
+}
+
+/**
+ * Edita una receta en el estado.
+ * @param recipe La nueva receta. El ID de receta no se puede modificar nunca;
+ * debe ser el mismo que la receta antigua. Si no, esta función lanzará un
+ * error.
+ */
+function editRecipeInState(recipe) {
+	if (!(recipe instanceof Recipe)) {
+		throw new Error("El objeto pasado a editRecipeInState no es una Recipe");
+	}
+
+	const newState = getState();
+	const recipeInState = newState.recipes
+		.find(r => r.idRecipe === recipe.idRecipe);
+
+	if (!recipeInState) {
+		throw new Error("La receta pasada a editRecipeInState no existe en" +
+			" el estado, y por lo tanto no se puede modificar.");
+	}
+
+	const index = newState.recipes.indexOf(recipeInState);
+	newState.recipes[index] = recipe;
+	state = newState;
+}
+
+/**
+ * Edita una valoración en el estado.
+ * @param rating La nueva valoración. El ID de valoración no se puede modificar
+ * nunca; debe ser el mismo que la valoración antigua. Si no, esta función
+ * lanzará un error.
+ */
+function editRatingInState(rating) {
+	if (!(rating instanceof Rating)) {
+		throw new Error("El objeto pasado a editRatingInState no es un Rating");
+	}
+
+	const newState = getState();
+	const ratingInState = newState.ratings
+		.find(r => r.idRating === rating.idRating);
+
+	if (!ratingInState) {
+		throw new Error("El rating pasado a editRatingInState no existe en" +
+			" el estado, y por lo tanto no se puede modificar.");
+	}
+
+	const index = newState.ratings.indexOf(ratingInState);
+	newState.ratings[index] = rating;
+	state = newState;
+}
+
+/**
+ * Edita un usuario en el estado.
+ * @param user El nuevo usuario. El ID de usuario no se puede modificar nunca;
+ * debe ser el mismo que el usuario antiguo. Si no, esta función lanzará error.
+ */
+function editUserInState(user) {
+	if (!(user instanceof User)) {
+		throw new Error("El objeto pasado a editUserInState no es un User");
+	}
+
+	const newState = getState();
+	const userInState = newState.users.find(u => u.id === user.id);
+
+	if (!userInState) {
+		throw new Error("El user pasado a editRatingInState no existe en" +
+			" el estado, y por lo tanto no se puede modificar.");
+	}
+
+	const index = newState.users.indexOf(userInState);
+	newState.users[index] = user;
 	state = newState;
 }
 
@@ -75,18 +159,20 @@ function addUserToState(user) {
  * Esta función solo debe usarse al cargar el estado de la apliación desde el
  * localStorage. No se debe usar en otro caso bajo ningún concepto.
  *
- * @param nextState {State} El próximo estado
+ * @param [nextState] {State} El próximo estado. Si no se especifica, será el
+ * estado por defecto.
  */
 function replaceWholeState(nextState) {
-	state = nextState;
+	state = nextState || DEFAULT_STATE;
 }
-
-// TODO crear funciones para modificar y borrar
 
 module.exports = {
 	getState,
 	addRecipeToState,
 	addRatingToState,
 	addUserToState,
+	editRecipeInState,
+	editRatingInState,
+	editUserInState,
 	replaceWholeState
 };
