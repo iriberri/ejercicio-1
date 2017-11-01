@@ -10,14 +10,15 @@ const { getState } = require("../../appState");
  * @param ingredient
  * @returns {Array}
  */
-function getRecipesByIngredients(ingredient) {
+function getRecipesByIngredient(ingrediente) {
 	const recetas = getState().recipes;
 
 	const result = [];
 	for (let i = 0; i < recetas.length; i += 1) {
 		for (let j = 0; j < recetas[i].ingredients.length; j += 1) {
-			if (recetas[i].ingredients[j].ingredient.name === ingredient) {
+			if (recetas[i].ingredients[j].ingredient.id === ingrediente.ingredient.id) {
 				result.push(recetas[i]);
+				break;
 			}
 		}
 	}
@@ -25,4 +26,4 @@ function getRecipesByIngredients(ingredient) {
 }
 
 
-module.exports = getRecipesByIngredients;
+module.exports = getRecipesByIngredient;
