@@ -153,4 +153,4 @@ function getRecipesBySimilarRecipe(similarRecipe) {
 	return arraySimilarRecipes;
 }
 
-module.exports = getRecipesBySimilarRecipe.js;
+module.exports = getRecipesBySimilarRecipe;
