@@ -34,7 +34,7 @@ class Recipe {
 		// Controlamos dato ingredients
 		// Tiene que ser un array  de 3 o más Ingredients
 		if (ingredients instanceof Array) {
-			if (ingredients.length > 3) {
+			if (ingredients.length >= 3) {
 				for (let i = 0; i < ingredients.length; i += 1) {
 					if (!(ingredients[i].ingredient instanceof Ingredient) || typeof ingredients[i].quantity !== typeof "") {
 						throw new Error(tipoDatoInvalido);
