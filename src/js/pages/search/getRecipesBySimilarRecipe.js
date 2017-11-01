@@ -139,17 +139,17 @@ function getRecipesBySimilarRecipe(similarRecipe) {
 	 * @type {Array}
 	 */
 	const arraySimilarRecipes = [];
-	/* eslint-disable */
 	/**
-	 * Bucle for in que recorrerá el array de recetas e iremos aplicando la función isSimilar para saber si hay recetas
-	 * parecidas, en caso afirmativo, añadimos esa receta a arraySimilarRecipes
+	 * Bucle for in que recorrerá el array de recetas e iremos aplicando la
+	 * función isSimilar para saber si hay recetas parecidas, en caso
+	 * afirmativo, añadimos esa receta a arraySimilarRecipes
 	 */
-	for (const receta in recetas) {
+	recetas.forEach((receta) => {
 		if (isSimilar(receta, similarRecipe)) {
 			arraySimilarRecipes.push(receta);
 		}
-	}
-	/* eslint-enable */
+	});
+
 	return arraySimilarRecipes;
 }
 
