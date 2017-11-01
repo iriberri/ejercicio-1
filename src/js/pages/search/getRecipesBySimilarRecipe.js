@@ -22,15 +22,15 @@ function isSimilar(receta, similarRecipe) {
 	 */
 	let numCoincidenciasIngredientes = 0;
 	/**
-	 * Al ser el nombre de la receta un String, lo convertiremos
-	 * a minúscula y lo separaremos
+	 * Convertimos receta.name en un array de string y lo convertimos
+	 * también a minúscula
 	 */
-	receta.name.toLowerCase().split(" ");
+	const recetaSplit = receta.name.toLowerCase().split(" ");
 	/**
-	 * Al ser el nombre de la receta recibida un String, lo convertiremos
-	 * a minúscula y lo separaremos
+	 * Convertimos similar.name en un array de string y lo convertimos
+	 * también a minúscula
 	 */
-	similarRecipe.name.toLowerCase().split(" ");
+	const similarRecipeSplit = similarRecipe.name.toLowerCase().split(" ");
 	/**
 	 * Obtenemos cuantos palabras tiene la receta
 	 */
@@ -56,9 +56,9 @@ function isSimilar(receta, similarRecipe) {
 	 * los ingreditentes, sumaremos 1 a la variable numCoincidenciasIngreientes
 	 */
 	/* eslint-disable */
-	for (const ingredientes of receta.ingredient) {
-		for (const ingredientes2 of similarRecipe.ingredient) {
-			if (ingredientes.ingredient.id === ingredientes2.ingredient.id) {
+	for (const ingredient of receta.ingredients) {
+		for (const ingredient2 of similarRecipe.ingredients) {
+			if (ingredient.ingredient.id === ingredient2.ingredient.id) {
 				numCoincidenciasIngredientes++;
 			}
 		}
@@ -68,9 +68,9 @@ function isSimilar(receta, similarRecipe) {
 	 * de ambas recetas y los iremos comparando, si coinciden
 	 * los nombres, sumaremos 1 a la variable numCoincidenciasPalabras
 	 */
-	for (const palabras of receta.name) {
-		for (const palabras2 of similarRecipe.name) {
-			if (palabras === palabras2) {
+	for (const palabra of recetaSplit) {
+		for (const palabra2 of similarRecipeSplit) {
+			if (palabra === palabra2) {
 				numCoincidenciasPalabras++;
 			}
 		}
