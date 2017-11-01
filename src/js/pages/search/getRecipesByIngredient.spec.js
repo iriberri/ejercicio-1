@@ -100,11 +100,10 @@ describe("getRecipesByIngredient", () => {
 			it("Deberia devovler dos elementos", () => {
 				expect(getRecipesByIngredient(macarrone)).to.have.length(2);
 			});
-			it("Los elementos del primer array de los dos que recibe son instanceof Recipe", () => {
-				expect(getRecipesByIngredient(macarrone)[0]).to.be.instanceof(Recipe);
-			});
-			it("Los elementos del segundo array de los dos que recibe son instanceof Recipe", () => {
-				expect(getRecipesByIngredient(macarrone)[1]).to.be.instanceof(Recipe);
+			it("Los elementos del array resultante son instanceof Recipe", () => {
+				for (let i = 0; i < getRecipesByIngredient(macarrone).lenght; i += 1) {
+					expect(getRecipesByIngredient(macarrone)[i]).to.be.instanceof(Recipe);
+				}
 			});
 			it("Deberia devovler tres elementos", () => {
 				expect(getRecipesByIngredient(nata)).to.have.length(3);
