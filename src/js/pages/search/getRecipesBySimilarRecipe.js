@@ -150,6 +150,7 @@ function getRecipesBySimilarRecipe(similarRecipe) {
 		}
 	}
 	/* eslint-enable */
+	return arraySimilarRecipes;
 }
 
 module.exports = getRecipesBySimilarRecipe.js;
