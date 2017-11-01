@@ -5,12 +5,8 @@ const Rating = require("./model/Rating");
 const User = require("./model/User");
 
 function saveStateToStorage() {
-	const RECIPES_JSON = JSON.stringify(getState().recipes);
-	const RATINGS_JSON = JSON.stringify(getState().ratings);
-	const USERS_JSON = JSON.stringify(getState().users);
-	localStorage.setItem("recipes", RECIPES_JSON);
-	localStorage.setItem("ratings", RATINGS_JSON);
-	localStorage.setItem("users", USERS_JSON);
+	const STATE_JSON = JSON.stringify(getState);
+	localStorage.setItem("state", STATE_JSON);
 }
 
 function saveInitialStateToStorage() {
@@ -27,7 +23,7 @@ function saveInitialStateToStorage() {
 		"Una vez hecho esto, añadimos el tomate frito y espolvoreamos con orégano seco. Mezclamos todos los ingredientes y dejamos cocinar 10 minutos más.",
 		"Cuando los macarrones estén al dente, reservamos uno 150ml del caldo de la cocción en un vaso y los escurrimos del resto del agua",
 		"g Cuando tanto los macarrones como la salsa estén cocinados, añadimos los macarrones a la cazuela donde esté la salsa. Añadimos el caldo de la cocción (que potenciará todos los sabores) y lo mezclamos todo bien, mientras cocinamos todo durante un par de minutos"];
-	const recipe1 = new Recipe(
+	const recipe = [new Recipe(
 		1,
 		"poderosa",
 		ingredients1,
@@ -35,25 +31,29 @@ function saveInitialStateToStorage() {
 		"mexicana",
 		"china",
 		1
-	);
-	const user1 = new User(1, "Pablo");
-	const rating1 = new Rating(
+	)];
+	const rating = [new Rating(
 		1,
 		"Me encanta",
 		10,
 		1,
 		1
-	);
-	const RECIPE = JSON.stringify(recipe1);
-	const USER = JSON.stringify(user1);
-	const RATING = JSON.stringify(rating1);
-	localStorage.setItem("recipes", RECIPE);
-	localStorage.setItem("users", USER);
-	localStorage.setItem("ratings", RATING);
+	)];
+	const user = [new User(1, "Pablo")];
+	const RECIPE = JSON.stringify(recipe);
+	const RATING = JSON.stringify(rating);
+	const USER = JSON.stringify(user);
+	const STATE = Object({
+		recipes: RECIPE,
+		ratings: RATING,
+		users: USER
+	});
+	localStorage.setItem("state", STATE);
+	replaceWholeState(STATE);
 }
 
 function loadStateFromStorage() {
-	if (localStorage.length > 0) {
+	if (localStorage.length !== null) {
 		const RECIPES = JSON.parse(localStorage.getItem("recipes"));
 		const RATINGS = JSON.parse(localStorage.getItem("ratings"));
 		const USERS = JSON.parse(localStorage.getItem("users"));
@@ -67,3 +67,5 @@ function loadStateFromStorage() {
 		saveInitialStateToStorage();
 	}
 }
+
+module.exports = { loadStateFromStorage, saveStateToStorage };
