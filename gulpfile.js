@@ -34,3 +34,8 @@ gulp.task("build-html", () => gulp.src(HTML_SOURCE)
 )
 
 gulp.task("build", ["build-js", "build-html"])
+
+gulp.task("watch", () => {
+	gulp.watch(JS_SOURCE, ["build-js"])
+	gulp.watch(HTML_SOURCE, ["build-html"])
+})
