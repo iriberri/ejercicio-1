@@ -29,7 +29,7 @@ class Ingredient {
 			throw new Error(datoInvalido);
 		} else {
 			// Expresion regular que elimina los espacios en blanco.
-			this.name = name.trim().replace(/([ t]+(?=[ t])|^s+|s+$)/g, "");
+			this.name = name.trim().replace(/\s{2,}/g, " ");
 		}
 	}
 }
