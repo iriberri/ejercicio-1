@@ -42,14 +42,7 @@ function loadSearchBySimilarRecipe() {
 	button.addEventListener("click", () => {
 		const searchText = input.value;
 		const recetas = getState().recipes;
-		const recipe = [];
-		for (let i = 0; i < recetas.length; i += 1) {
-			for (let j = 0; j < recetas[i].idRecipe; j += 1) {
-				if (recetas[i].idRecipe === searchText) {
-					recipe.push(recetas[i]);
-				}
-			}
-		}
+		const recipe = recetas[recetas.findIndex(x => x.idRecipe === parseInt(searchText, 0))];
 		const results = getRecipesBySimilarRecipe(recipe);
 
 		// Borrar los resultados de una búsqueda anterior

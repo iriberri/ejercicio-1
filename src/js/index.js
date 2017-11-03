@@ -37,7 +37,7 @@ window.addEventListener("load", () => {
 		1
 	);
 	const recipe2 = new Recipe(
-		1,
+		2,
 		"Macarrones a la boloñesa",
 		[
 			{

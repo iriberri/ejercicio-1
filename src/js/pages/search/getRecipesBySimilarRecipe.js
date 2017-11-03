@@ -11,11 +11,11 @@ function isSimilar(receta, similarRecipe) {
 	/**
 	 * Obtenemos cuantos ingredientes tiene la receta
 	 */
-	const numIngredientes = receta.ingredient.length;
+	const numIngredientes = receta.ingredients.length;
 	/**
 	 * Obtenemos cuantos ingredientes tiene la receta introducida para comparar
 	 */
-	const numIngredientes2 = similarRecipe.ingredient.length;
+	const numIngredientes2 = similarRecipe.ingredients.length;
 	/**
 	 * Guardaremos en esta variable cuantos ingredientes coinciden entre ambas recetas
 	 * @type {number}
