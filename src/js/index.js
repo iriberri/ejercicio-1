@@ -2,12 +2,12 @@ const loadSearchController = require("./controller/search");
 const Ingredient = require("./model/Ingredient");
 const Recipe = require("./model/Recipe");
 const { addRecipeToState } = require("./appState");
+const { loadStateFromStorage } = require("./storaje");
 
 window.addEventListener("load", () => {
 	loadSearchController();
+	loadStateFromStorage();
 
-	// TODO: esto está aquí provisionalmente para hacer pruebas hasta que
-	// el estado se carge del localStorage.
 	const recipe = new Recipe(
 		1,
 		"Macarrones a la boloñesa",

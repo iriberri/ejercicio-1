@@ -4,11 +4,13 @@ const Ingredient = require("./model/Ingredient");
 const Rating = require("./model/Rating");
 const User = require("./model/User");
 
+// Guarda el estado actualuas de la aplicación en la memoria local
 function saveStateToStorage() {
 	const STATE_JSON = JSON.stringify(getState);
 	localStorage.setItem("state", STATE_JSON);
 }
 
+// Si no hay memoria local, creamos y guardamos una primera receta, usuario y rating
 function saveInitialStateToStorage() {
 	const INGREDIENTS = [
 		{ ingredient: new Ingredient(1, "macarrones"), quantity: "500g" },
@@ -51,15 +53,19 @@ function saveInitialStateToStorage() {
 
 function loadStateFromStorage() {
 	if (localStorage.getItem("state") !== null) {
-		const RECIPES = JSON.parse(localStorage.getItem("recipes"));
-		const RATINGS = JSON.parse(localStorage.getItem("ratings"));
-		const USERS = JSON.parse(localStorage.getItem("users"));
-		const STATE = Object({
-			recipes: RECIPES,
-			ratings: RATINGS,
-			users: USERS
-		});
-		replaceWholeState(STATE);
+		let state = JSON.parse(localStorage.getItem("state"));
+		const RECIPES = state.recipes;
+		const RATINGS = state.ratings;
+		const USERS = state.users;
+		RECIPES.forEach(x => Object.setPrototypeOf(x, Recipe.prototype));
+		RATINGS.forEach(x => Object.setPrototypeOf(x, Rating.prototype));
+		USERS.forEach(x => Object.setPrototypeOf(x, User.prototype));
+		state = {
+			recipes: [],
+			ratings: [],
+			users: [],
+		};
+		replaceWholeState(state);
 	} else {
 		saveInitialStateToStorage();
 	}
