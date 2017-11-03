@@ -25,7 +25,7 @@ class User {
 			throw new Error(datoInvalido);
 		} else {
 			// Se eliminan todos los espacios en blanco del nombre.
-			this.nombre = nombre.trim().replace(/([ t]+(?=[ t])|^s+|s+$)/g, "");
+			this.nombre = nombre.trim().replace(/\s{2,}/g, " ");
 		}
 	}
 }
