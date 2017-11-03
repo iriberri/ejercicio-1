@@ -7,8 +7,8 @@ const { getState } = require("../../appState");
 /**
  * Funcio que recibe un ingrediente por parametro y devuelve todas las recetas que lo
  * contienen.
- * @param ingredient
- * @returns {Array}
+ * @param ingrediente Ingredient
+ * @returns {Array} Array con todas las recetas que contienen el ingrediente
  */
 function getRecipesByIngredient(ingrediente) {
 	const recetas = getState().recipes;

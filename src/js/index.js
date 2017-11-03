@@ -36,5 +36,35 @@ window.addEventListener("load", () => {
 		"Italia",
 		1
 	);
+
+	const recipe2 = new Recipe(
+		2,
+		"test",
+		[
+			{
+				ingredient: new Ingredient(1, "Macarrones"),
+				quantity: "200 g"
+			},
+			{
+				ingredient: new Ingredient(2, "Boloñesa"),
+				quantity: "10 g"
+			},
+			{
+				ingredient: new Ingredient(3, "Mucho amor"),
+				quantity: "1000 g"
+			},
+		],
+		[
+			"test",
+			"test",
+			"test",
+			"test",
+			"test",
+		],
+		"test",
+		"test",
+		2
+	);
 	addRecipeToState(recipe);
+	addRecipeToState(recipe2);
 });

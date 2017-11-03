@@ -54,6 +54,8 @@ function loadSearchByIngredient() {
 				.map(recipeToDiv)
 				.forEach(it => resultsOutput.appendChild(it));
 		}
+
+		// Mostrar los resultados
 		resultsDiv.style.display = "block";
 	});
 }
