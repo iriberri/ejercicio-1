@@ -7,7 +7,7 @@ const Recipe = require("../../model/Recipe");
 /**
  * Funcion que valida todos los campos de una receta para crearla, si recibe un campo de
  * tipo diferente, null o undefined, una receta con menos de 3 pasos o ingredientes repetidos
- * o una receta con menos de 5 pasos o pasos repetidos lanzara una excepcion.
+ * o una receta con menos de 5 pasos o pasos repetidos devolvera success = false y el tipo de error
  * @param recipeId Integer
  * @param name String
  * @param ingredients Array[Ingredient]
@@ -18,7 +18,6 @@ const Recipe = require("../../model/Recipe");
  * @returns {{success: *, error: *}} boolean and Error
  */
 function createRecipe(recipeId, name, ingredients, steps, typeOfFood, origin, authorId) {
-	const invalidRecipe = "Receta no valida";
 	const repeatedIngredient = "La receta tiene algun ingrediente repetido";
 	let error;
 	let success;
@@ -35,20 +34,20 @@ function createRecipe(recipeId, name, ingredients, steps, typeOfFood, origin, au
 
 	// Si no hay ids repetidos en los ingredientes, intenta crear la receta
 	if (checkIfArrayIsUnique(resultado)) {
-		/* Si la receta recibe valores invalidos lanzara un error, sino la añade
+		/* Si la receta recibe valores definira el tipo de error, sino la añade
 		 a las recetas de state */
 		try {
 			const recipe = new Recipe(recipeId, name, ingredients, steps, typeOfFood, origin, authorId);
 			success = true;
 			addRecipeToState(recipe);
-		} catch (err) {
+		} catch (e) {
 			success = false;
-			throw error = new Error(invalidRecipe);
+			error = e;
 		}
-	// Si ha ids repetidos en los ingredientes, lanza un error
+	// Si ha ids repetidos en los ingredientes, definira el tipo de error como ingredientes repetidos
 	} else {
 		success = false;
-		throw error = new Error(repeatedIngredient);
+		error = new Error(repeatedIngredient);
 	}
 	return { success, error };
 }
