@@ -27,7 +27,7 @@ function recipeToDiv(recipe) {
 
 	const name = el("h3");
 	name.class = "name";
-	name.textContent = recipe.name;
+	name.textContent = `#${recipe.idRecipe} - ${recipe.name}`;
 
 	const attributeList = el("ul");
 	attributeList.class = "attributeList";
