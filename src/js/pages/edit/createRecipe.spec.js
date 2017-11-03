@@ -1,3 +1,3 @@
-/**
- * Created by Vikin on 02/11/2017.
- */
+describe("createRecipe", () => {
+	it("debería tener tests");
+});
