@@ -61,9 +61,9 @@ function loadStateFromStorage() {
 		RATINGS.forEach(x => Object.setPrototypeOf(x, Rating.prototype));
 		USERS.forEach(x => Object.setPrototypeOf(x, User.prototype));
 		state = {
-			recipes: [],
-			ratings: [],
-			users: [],
+			recipes: RECIPES,
+			ratings: RATINGS,
+			users: USERS,
 		};
 		replaceWholeState(state);
 	} else {
