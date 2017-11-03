@@ -2,6 +2,7 @@ const { expect } = require("chai");
 const Ingredient = require("../../model/Ingredient");
 const Recipe = require("../../model/Recipe");
 const addOrEditStepInRecipe = require("./addOrEditStepInRecipe");
+
 let dummyIngredients;
 let dummySteps;
 let dummyRecipe;
@@ -23,14 +24,14 @@ describe("addOrEditStepInRecipe", () => {
 			"china",
 			1
 		);
-		it("Debeía devolvernos una receta", () => {
-			expect(addOrEditStepInRecipe(dummyRecipe, "hola").to.be.an(Recipe));
-		});
-		it("Debeía devolvernos una receta con 7 pasos", () => {
-			expect(addOrEditStepInRecipe(dummyRecipe, "hola").to.includes("steps").that.have.length(7));
-		});
-		it("Debeía devolvernos una receta con 6 pasos en la cual el 3 sea \"hola\"", () => {
-			expect(addOrEditStepInRecipe(dummyRecipe, "hola", 3).to.includes("steps").that.dummyRecipe.steps[3].to.be.equals("hola"));
-		});
+	});
+	it("Debeía devolvernos una receta", () => {
+		expect(addOrEditStepInRecipe(dummyRecipe, "hola")).to.be.an.instanceof(Recipe);
+	});
+	it("Debeía devolvernos una receta con 7 pasos", () => {
+		expect(addOrEditStepInRecipe(dummyRecipe, "hola").steps).that.have.length(7);
+	});
+	it("Debeía devolvernos una receta con 6 pasos en la cual el 3 sea \"hola\"", () => {
+		expect(addOrEditStepInRecipe(dummyRecipe, "hola", 3).steps[3]).to.equal("hola");
 	});
 });
