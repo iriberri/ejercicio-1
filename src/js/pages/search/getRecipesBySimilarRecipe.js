@@ -144,11 +144,15 @@ function getRecipesBySimilarRecipe(similarRecipe) {
 	 * función isSimilar para saber si hay recetas parecidas, en caso
 	 * afirmativo, añadimos esa receta a arraySimilarRecipes
 	 */
-	recetas.forEach((receta) => {
-		if (isSimilar(receta, similarRecipe)) {
-			arraySimilarRecipes.push(receta);
-		}
-	});
+	recetas
+		// Filtramos la propia receta para que no se muestre como similar a
+		// sí misma
+		.filter(it => it.idRecipe !== similarRecipe.idRecipe)
+		.forEach((receta) => {
+			if (isSimilar(receta, similarRecipe)) {
+				arraySimilarRecipes.push(receta);
+			}
+		});
 
 	return arraySimilarRecipes;
 }

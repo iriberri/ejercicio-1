@@ -14,6 +14,11 @@ function loadSearchByNameOrSteps() {
 
 	button.addEventListener("click", () => {
 		const searchText = input.value;
+
+		if (typeof searchText !== "string" || searchText.length === 0) {
+			return;
+		}
+
 		const results = getRecipesByNameOrSteps(searchText);
 
 		// Borrar los resultados de una búsqueda anterior
