@@ -14,7 +14,7 @@ const Recipe = require("../../model/Recipe");
  * @param typeOfFood String
  * @param origin String
  * @param authorId String
- * @returns {{success: *, error: *}} boolean and Error
+ * @returns {{success: *, error: *, recipe: Recipe}} boolean and Error
  */
 function createRecipe(name, ingredients, steps, typeOfFood, origin, authorId) {
 	const repeatedIngredient = "La receta tiene algun ingrediente repetido";

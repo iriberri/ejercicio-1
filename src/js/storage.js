@@ -6,7 +6,7 @@ const User = require("./model/User");
 
 // Guarda el estado actualuas de la aplicación en la memoria local
 function saveStateToStorage() {
-	const STATE_JSON = JSON.stringify(getState);
+	const STATE_JSON = JSON.stringify(getState());
 	localStorage.setItem("state", STATE_JSON);
 }
 
