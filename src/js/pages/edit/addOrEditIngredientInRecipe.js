@@ -1,9 +1,18 @@
 const Ingredient = require("../../model/Ingredient");
+const Recipe = require("../../model/Recipe");
 // La funcion debe de devolvernos una receta con un ingrediente más o
 // un engrediente actualizado en el caso de que el index pasado por parámetro exista.
 function addOrEditIngredientInRecipe(recipe, newIngredient, existingIngredientIndex) {
 	const tipoDatoInvalido = "Tipo de dato invalido";
-	const newRecipe = recipe;
+	const newRecipe = new Recipe(
+		recipe.idRecipe,
+		recipe.name,
+		[...recipe.ingredients],
+		[...recipe.steps],
+		recipe.typeOfFood,
+		recipe.origin,
+		recipe.idAuthor
+	);
 	// Comprobamos que lo que pasamos por parámetro sea un ingrediente y que su cantidad sea un String
 	if (!(newIngredient.ingredient instanceof Ingredient) || typeof newIngredient.quantity !== typeof "") {
 		throw new Error(tipoDatoInvalido);
