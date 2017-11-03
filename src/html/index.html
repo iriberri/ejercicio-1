@@ -58,62 +58,63 @@
 
 	<div class="section" id="section-create">
 
-		<h2>Crear Recetas</h2>
+		<h2>Editar Recetas</h2>
 
-		<div id="create-result" style="display: none;">
+		<div id="edit-result" style="display: none;">
 
 			<p>Receta Creada:</p>
 
-			<div id="salida"></div>
+			<div class="salida"></div>
 
 		</div>
 
 		<div class="subSection" id="subSection-create-recipes">
 
+			<h3>Crear receta</h3>
 
-			<label for="create-recipes-inputId">
-				Id receta:
+			<label for="create-recipe-inputName">
+				Nombre:
 			</label>
-			<input type="text" id="create-recipes-inputId">
+			<input type="text" id="create-recipe-inputName">
 			<br>
 
-			<label for="create-recipes-inputName">
-				Nombre receta:
+			<label>
+				Ingredientes:
 			</label>
-			<input type="text" id="create-recipes-inputName">
+			<br>
+			<div
+				id="create-recipe-ingredients-inputs"
+				style="display: flex; flex-direction: column; width: 200px;">
+			</div>
+
+			<label>
+				Pasos:
+			</label>
+			<br>
+			<div
+				id="create-recipe-steps-inputs"
+				style="display: flex; flex-direction: column; width: 200px;">
+			</div>
+
+			<label for="create-recipe-inputTypeOfFood">
+				Tipo de comida:
+			</label>
+			<input type="text" id="create-recipe-inputTypeOfFood">
 			<br>
 
-			<label for="create-recipes-inputIngredients">
-				Ingredientes receta:
+			<label for="create-recipe-inputOrigin">
+				Origen:
 			</label>
-			<input type="text" id="create-recipes-inputIngredients">
+			<input type="text" id="create-recipe-inputOrigin">
 			<br>
 
-			<label for="create-recipes-inputSteps">
-				Pasos receta:
+			<label for="create-recipe-inputAuthorId">
+				ID del autor:
 			</label>
-			<input type="text" id="create-recipes-inputSteps">
+			<input type="number" id="create-recipe-inputAuthorId">
 			<br>
 
-			<label for="create-recipes-inputTypeOfFood">
-				Tipo de comida para la receta:
-			</label>
-			<input type="text" id="create-recipes-inputTypeOfFood">
-			<br>
-
-			<label for="create-recipes-inputOrigin">
-				Origen receta:
-			</label>
-			<input type="text" id="create-recipes-inputOrigin">
-			<br>
-
-			<label for="create-recipes-inputAuthorId">
-				Autor receta:
-			</label>
-			<input type="text" id="create-recipes-inputAuthorId">
-			<br>
-
-			<button id="create-recipes-button">
+			<button id="create-recipe-button">
 				Crear Receta
 			</button>
 
