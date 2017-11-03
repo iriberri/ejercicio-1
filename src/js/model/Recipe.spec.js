@@ -4,8 +4,6 @@ const { expect } = require("chai");
 // // Dependencias del proyecto
 const Recipe = require("./Recipe");
 const Ingredient = require("./Ingredient");
-const Rating = require("./Rating");
-const { addRatingToState, replaceWholeState } = require("../appState");
 
 let recipe;
 let ingredients;
@@ -48,57 +46,6 @@ describe("Recipe:", () => {
 		});
 		it("El id del autor debería ser 1", () => {
 			expect(recipe.idAuthor).to.equals(1);
-		});
-	});
-	describe("Métodos de la clase Recipe", () => {
-		let ratingA;
-		let ratingB;
-		let ratingC;
-
-		before(() => {
-			replaceWholeState();
-
-			ratingA = new Rating(
-				1,
-				"Flama",
-				10,
-				1,
-				1
-			);
-
-			ratingB = new Rating(
-				1,
-				"Cacota",
-				0,
-				1,
-				1
-			);
-
-			ratingC = new Rating(
-				1,
-				"Cacota",
-				0,
-				1,
-				2
-			);
-
-			addRatingToState(ratingA);
-			addRatingToState(ratingB);
-			addRatingToState(ratingC);
-		});
-
-		it("get ratings() debería devolver las valoraciones", () => {
-			const { ratings } = recipe;
-
-			expect(ratings).to.be.an("Array");
-			expect(ratings).to.deep.include(ratingA);
-			expect(ratings).to.deep.include(ratingB);
-			expect(ratings).to.not.deep.include(ratingC);
-			ratings.forEach(it => expect(it).to.be.instanceof(Rating));
-		});
-
-		after(() => {
-			replaceWholeState();
 		});
 	});
 	/**

@@ -17,8 +17,12 @@ function getRecipesByNameOrSteps(nameOrStep) {
 	 * las fistramos si en su nombre aparece el valor que deseamos buscar así como
 	 * en cada paso de cada receta.
 	 */
-	return recetas.filter(x => x.name.includes(nameOrStep) ||
-		x.steps.some(i => i.includes(nameOrStep)));
+	return recetas.filter(x => x
+		.name
+		.toLowerCase()
+		.includes(nameOrStep.toLowerCase()) || x
+			.steps
+			.some(i => i.toLowerCase().includes(nameOrStep.toLowerCase())));
 }
 
 module.exports = getRecipesByNameOrSteps;
