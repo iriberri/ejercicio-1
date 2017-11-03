@@ -1,4 +1,6 @@
 const Ingredient = require("./Ingredient");
+const { getState } = require("../appState");
+
 
 /**
  * Creamos la clase receta.
@@ -83,6 +85,10 @@ class Recipe {
 		} else {
 			throw new Error(tipoDatoInvalido);
 		}
+	}
+	getRating() {
+		const RATINGS = getState().ratings;
+		return RATINGS.find(x => x.idRecipe === this.idRecipe).score;
 	}
 }
 
