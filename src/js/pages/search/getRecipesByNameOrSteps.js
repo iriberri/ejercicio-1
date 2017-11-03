@@ -5,6 +5,7 @@ const { getState } = require("../../appState");
  * Con esta funcion buscamos todas aquellas recetas que contengan
  * en su nombre o en sus pasos el valor que le pasemos por parámetro.
  * @param nameOrStep String valor a buscar
+ * @return {Recipe[]} Las recetas que coinciden con el criterio de búsqueda.
  */
 function getRecipesByNameOrSteps(nameOrStep) {
 	/**
