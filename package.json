@@ -5,7 +5,6 @@
 	"main": "src/js/index.js",
 	"scripts": {
 		"build": "gulp build",
-		"watch": "gulp watch",
 		"lint": "eslint ./src/js/**/*.js",
 		"test": "mocha ./src/js/**/*.spec.js",
 		"prepush": "npm run lint && npm run test"
