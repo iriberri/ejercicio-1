@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const { expect } = require("chai");
 
 // Dependencias del proyecto
