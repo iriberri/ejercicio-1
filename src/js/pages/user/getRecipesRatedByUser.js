@@ -1,4 +1,4 @@
-const { getState } = require('../../appState');
+const { getState } = require("../../appState");
 
 function getRecipesRatedByUser(idAuthor) {
 	const RATINGS = getState().ratings;
