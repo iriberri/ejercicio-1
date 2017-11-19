@@ -1,7 +1,7 @@
 // Dependencias del proyecto
 const { getState } = require("../../appState");
 
-function getHighestRatedRecipesByChef(idAuthor, typeOfFood) {
+function getHighestRatedRecipesByChef(idAuthor, typeOfFood = "") {
 /**
  * Recogemos las recetas que tenemos
 */
