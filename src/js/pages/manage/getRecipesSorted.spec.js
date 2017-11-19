@@ -101,20 +101,43 @@ describe("getRecipesSorted", () => {
 	});
 
 	describe("algoritmos", () => {
-		const array = () => [1, 6, 98, 3, 7, 1, 2];
-		const expected = [1, 1, 2, 3, 6, 7, 98];
+		describe("con enteros", () => {
+			const array = () => [1, 6, 98, 3, 7, 1, 2];
+			const expected = [1, 1, 2, 3, 6, 7, 98];
+			const comparator = (a, b) => a - b;
 
-		describe("quicksort", () => {
-			it("debería ordenar un array correctamente", () => {
-				const arr = array();
-				quickSort(arr);
-				expect(arr).to.deep.equal(expected);
+			describe("quicksort", () => {
+				it("debería ordenar un array correctamente", () => {
+					const arr = array();
+					quickSort(arr, comparator);
+					expect(arr).to.deep.equal(expected);
+				});
+			});
+
+			describe("mergrsort", () => {
+				it("debería ordenar un array correctamente", () => {
+					expect(mergeSorted(array(), comparator)).to.deep.equal(expected);
+				});
 			});
 		});
 
-		describe("mergrsort", () => {
-			it("debería ordenar un array correctamente", () => {
-				expect(mergeSorted(array())).to.deep.equal(expected);
+		describe("con strings", () => {
+			const array = () => ["Sevilla", "Albacete", "Zaragoza", "Mérida"];
+			const expected = ["Albacete", "Mérida", "Sevilla", "Zaragoza"];
+			const comparator = (a, b) => a.localeCompare(b);
+
+			describe("quicksort", () => {
+				it("debería ordenar un array correctamente", () => {
+					const arr = array();
+					quickSort(arr, comparator);
+					expect(arr).to.deep.equal(expected);
+				});
+			});
+
+			describe("mergrsort", () => {
+				it("debería ordenar un array correctamente", () => {
+					expect(mergeSorted(array(), comparator)).to.deep.equal(expected);
+				});
 			});
 		});
 	});

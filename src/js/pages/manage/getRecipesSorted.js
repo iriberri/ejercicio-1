@@ -1,8 +1,17 @@
 const { getState } = require("../../appState");
 
 /* eslint-disable no-plusplus, no-param-reassign */
+// noinspection JSCommentMatchesSignature
+/**
+ * Ordena un array usando quickSort. Modifica el array original.
+ * @param {array} array El array a ordernar. Será modificado por la función.
+ * @param {function} compare Una función que recibe dos parámetros: a y b.
+ * Debe devolver un número mayor que 0 si a es mayor que b, un número menor
+ * que 0 si b es mayor que a, o 0 si son iguales.
+ */
 function quickSort(
 	array,
+	compare,
 	left = 0,
 	right = array.length - 1
 ) {
@@ -10,8 +19,8 @@ function quickSort(
 		const pivot = array[Math.floor((i + j) / 2)];
 
 		while (i <= j) {
-			while (array[i] < pivot) { i++; }
-			while (array[j] > pivot) { j--; }
+			while (compare(array[i], pivot) < 0) { i++; }
+			while (compare(array[j], pivot) > 0) { j--; }
 
 			if (i <= j) {
 				[array[i], array[j]] = [array[j], array[i]];
@@ -27,16 +36,24 @@ function quickSort(
 		const i = partition(left, right);
 
 		if (left < i - 1) {
-			quickSort(array, left, i - 1);
+			quickSort(array, compare, left, i - 1);
 		}
 
 		if (i < right) {
-			quickSort(array, i, right);
+			quickSort(array, compare, i, right);
 		}
 	}
 }
 
-function mergeSorted(array) {
+/**
+ * Ordena un array usando mergeSort.
+ * @param {array} array El array a ordernar. No será modificado por la función.
+ * @param {function} compare Una función que recibe dos parámetros: a y b.
+ * Debe devolver un número mayor que 0 si a es mayor que b, un número menor
+ * que 0 si b es mayor que a, o 0 si son iguales.
+ * @return {array} El array ordenado
+ */
+function mergeSorted(array, compare) {
 	function merge(left, right) {
 		const result = [];
 		let i = 0;
@@ -46,11 +63,11 @@ function mergeSorted(array) {
 			const a = left[i];
 			const b = right[j];
 
-			result.push(Math.min(a, b));
-
-			if (a < b) {
+			if (compare(a, b) < 0) {
+				result.push(a);
 				i++;
 			} else {
+				result.push(b);
 				j++;
 			}
 		}
@@ -63,7 +80,7 @@ function mergeSorted(array) {
 		const left = array.slice(0, pivot);
 		const right = array.slice(pivot);
 
-		return merge(mergeSorted(left), mergeSorted(right));
+		return merge(mergeSorted(left, compare), mergeSorted(right, compare));
 	}
 
 	return array;
@@ -72,47 +89,31 @@ function mergeSorted(array) {
 
 function getRecipesSorted(algorithm) {
 	const arrayAverage = array => array
-		.reduce((el, acc) => el + acc, 0) / array;
+		.reduce((el, acc) => el + acc, 0) / array.length;
 
 	const getRecipeRatings = recipe => getState()
 		.ratings
 		.filter(it => it.idRecipe === recipe.idRecipe);
 
-	const recipes = getState()
-		.recipes
-		.map(it => ({
-			recipe: it,
-			averageScore: arrayAverage(getRecipeRatings(it).map(r => r.score))
-		}));
+	const recipeAverageScore = it =>
+		arrayAverage(getRecipeRatings(it).map(r => r.score));
 
-	const scores = recipes.map(it => it.averageScore);
-	let sortedScores = [...scores];
+	let { recipes } = getState();
+
+	const compare = (a, b) => recipeAverageScore(b) - recipeAverageScore(a);
 
 	switch (algorithm.toLowerCase()) {
 	case "quicksort":
-		quickSort(sortedScores);
+		quickSort(recipes, compare);
 		break;
 	case "mergesort":
-		sortedScores = mergeSorted(sortedScores);
+		recipes = mergeSorted(recipes, compare);
 		break;
 	default:
 		throw new Error("Algoritmo inválido");
 	}
 
-	const sortedRecipes = [];
-
-	// eslint-disable-next-line no-restricted-syntax
-	for (const score of sortedScores) {
-		const index = scores.indexOf(score);
-		// Esto es un null pointer. Desisto. Así se queda.
-		const { recipe } = recipes[index];
-
-		recipes.splice(index, 1);
-		scores.splice(index, 1);
-		sortedRecipes.push(recipe);
-	}
-
-	return sortedRecipes;
+	return recipes;
 }
 
 module.exports = {
