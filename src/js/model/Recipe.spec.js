@@ -15,17 +15,17 @@ let steps;
  * Test de la clase Recipe
  */
 describe("Recipe:", () => {
+	before(() => {
+		ingredients = [
+			{ ingredient: new Ingredient(1, "leche"), quantity: "200 g" },
+			{ ingredient: new Ingredient(2, "yogu"), quantity: "10g" },
+			{ ingredient: new Ingredient(3, "porvo"), quantity: "20g" },
+			{ ingredient: new Ingredient(4, "asuca"), quantity: "30g" },
+			{ ingredient: new Ingredient(5, "sumo naranja"), quantity: "400g" }];
+		steps = ["a", "b", "c", "d", "f", "g"];
+		recipe = new Recipe(1, "poderosa", ingredients, steps, "mexicana", "china", 1);
+	});
 	describe("Atributos de la clase Recipe", () => {
-		before(() => {
-			ingredients = [
-				{ ingredient: new Ingredient(1, "leche"), quantity: "200 g" },
-				{ ingredient: new Ingredient(2, "yogu"), quantity: "10g" },
-				{ ingredient: new Ingredient(3, "porvo"), quantity: "20g" },
-				{ ingredient: new Ingredient(4, "asuca"), quantity: "30g" },
-				{ ingredient: new Ingredient(5, "sumo naranja"), quantity: "400g" }];
-			steps = ["a", "b", "c", "d", "f", "g"];
-			recipe = new Recipe(1, "poderosa", ingredients, steps, "mexicana", "china", 1);
-		});
 		it("El id debería de devolver 1", () => {
 			expect(recipe.idRecipe).to.equals(1);
 		});
