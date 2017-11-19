@@ -1,5 +1,7 @@
 const getRecipesByNameOrSteps = require("../pages/search/getRecipesByNameOrSteps");
 const getRecipesBySimilarRecipe = require("../pages/search/getRecipesBySimilarRecipe");
+const getRecipesByTypeOfFood = require("../pages/search/getRecipesByTypeOfFood");
+const getHighestRatedRecipesByChef = require("../pages/manage/getHighestRatedRecipesByChef");
 const recipeToDiv = require("../support/recipeToDiv");
 const { getState } = require("../appState");
 
@@ -70,10 +72,77 @@ function loadSearchBySimilarRecipe() {
 		resultsDiv.style.display = "block";
 	});
 }
+function loadSearchByTypeOfFood() {
+	const button = qs("#search-by-typeOfFood-button");
+	const input = qs("#search-by-typeOfFood-input");
+
+	button.addEventListener("click", () => {
+		const searchText = input.value;
+
+		if (typeof searchText !== "string" || searchText.length === 0) {
+			return;
+		}
+
+		const results = getRecipesByTypeOfFood(searchText);
+
+		// Borrar los resultados de una búsqueda anterior
+		while (resultsOutput.firstChild) {
+			resultsOutput.removeChild(resultsOutput.firstChild);
+		}
+
+		if (results.length === 0) {
+			const p = document.createElement("p");
+			p.textContent = "No se han encontrado recetas";
+
+			resultsOutput.appendChild(p);
+		} else {
+			results
+				.map(recipeToDiv)
+				.forEach(it => resultsOutput.appendChild(it));
+		}
+
+		// Mostrar los resultados
+		resultsDiv.style.display = "block";
+	});
+}
+function loadGetHighestRatedRecipesByChef() {
+	const button = qs("#search-highest-rated-recipes-by-chef-button");
+	const input = qs("#search-by-idAuthor-input");
+	const input2 = qs("#search-by-typeOfFood-idAuthor-input");
+	button.addEventListener("click", () => {
+		const idAuthor = input.value;
+		const typeOfFood = input2.value;
+		if (typeof typeOfFood !== "string") {
+			return;
+		}
+		const results = getHighestRatedRecipesByChef(idAuthor, typeOfFood);
+
+		// Borrar los resultados de una búsqueda anterior
+		while (resultsOutput.firstChild) {
+			resultsOutput.removeChild(resultsOutput.firstChild);
+		}
+
+		if (results.length === 0) {
+			const p = document.createElement("p");
+			p.textContent = "No se han encontrado recetas";
+
+			resultsOutput.appendChild(p);
+		} else {
+			results
+				.map(recipeToDiv)
+				.forEach(it => resultsOutput.appendChild(it));
+		}
+
+		// Mostrar los resultados
+		resultsDiv.style.display = "block";
+	});
+}
 
 function loadSearchController() {
 	loadSearchByNameOrSteps();
 	loadSearchBySimilarRecipe();
+	loadSearchByTypeOfFood();
+	loadGetHighestRatedRecipesByChef();
 }
 
 module.exports = loadSearchController;
