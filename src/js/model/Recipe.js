@@ -20,18 +20,17 @@ class Recipe {
 	 * @param idAuthor Integer
 	 */
 	constructor(idRecipe, name, ingredients, steps, typeOfFood, origin, idAuthor) {
-		const tipoDatoInvalido = "El tipo de datos es inválido";
 		const datosInsuficinetes = "Datos insuficientes";
 		// Controlamos dato idRecipe
 		if (typeof idRecipe === typeof 1 && idRecipe > 0) {
 			this.idRecipe = idRecipe;
 		} else {
-			throw new Error(tipoDatoInvalido);
+			throw new Error("El ID de la receta es inválido");
 		}
 		if (typeof name === typeof "") {
 			this.name = name.trim();
 		} else {
-			throw new Error(tipoDatoInvalido);
+			throw new Error("El nombre de la receta es inválido");
 		}
 		// Controlamos dato ingredients
 		// Tiene que ser un array  de 3 o más Ingredients
@@ -39,7 +38,7 @@ class Recipe {
 			if (ingredients.length >= 3) {
 				for (let i = 0; i < ingredients.length; i += 1) {
 					if (!(ingredients[i].ingredient instanceof Ingredient) || typeof ingredients[i].quantity !== typeof "") {
-						throw new Error(tipoDatoInvalido);
+						throw new Error("Uno de los ingredientes es inválido");
 					} if (ingredients[i].quantity.length <= 0) {
 						throw new Error(datosInsuficinetes);
 					}
@@ -49,7 +48,7 @@ class Recipe {
 			}
 			this.ingredients = ingredients;
 		} else {
-			throw new Error(tipoDatoInvalido);
+			throw new Error("Los ingredientes de la receta son inválidos");
 		}
 		// Controlamos dato steps
 		// Tiene que ser una rray de 5 o más cadenas
@@ -57,7 +56,7 @@ class Recipe {
 			if (steps.length > 4) {
 				for (let i = 0; i < steps.length; i += 1) {
 					if (typeof steps[i] !== typeof "") {
-						throw new Error(tipoDatoInvalido);
+						throw new Error("Uno de los pasos es inválido");
 					}
 				}
 			} else {
@@ -65,25 +64,25 @@ class Recipe {
 			}
 			this.steps = steps;
 		} else {
-			throw new Error(tipoDatoInvalido);
+			throw new Error("Los pasos son inválidos");
 		}
 		// Controlamos dato typeOfFood
 		if (typeof typeOfFood === typeof "") {
 			this.typeOfFood = typeOfFood.trim();
 		} else {
-			throw new Error(tipoDatoInvalido);
+			throw new Error("El tipo de comida es inválido");
 		}
 		// Controlamos dato origin
 		if (typeof origin === typeof "") {
 			this.origin = origin.trim();
 		} else {
-			throw new Error(tipoDatoInvalido);
+			throw new Error("El origen es inválido");
 		}
 		// Controlamos dato idAuthor
 		if (typeof idAuthor === typeof 1 && idAuthor > 0) {
 			this.idAuthor = idAuthor;
 		} else {
-			throw new Error(tipoDatoInvalido);
+			throw new Error("El ID del autor es inválido");
 		}
 	}
 	getRating() {

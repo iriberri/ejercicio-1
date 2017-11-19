@@ -36,8 +36,94 @@
 			</button>
 
 		</div>
+		<div class="subSection" id="subSection-search-by-similar-recipe">
+
+			<h3>Buscar por receta similar</h3>
+
+			<p>Encuentra todas las recetas que sean similares al ID de la receta introducida.</p>
+
+			<label for="search-by-similar-recipe-id-input">
+				ID de la receta:
+			</label>
+			<input type="number" id="search-by-similar-recipe-id-input">
+
+			<button id="search-by-similar-recipe-button">
+				Buscar
+			</button>
+
+		</div>
 
 	</div>
+
+
+	<div class="section" id="section-create">
+
+		<h2>Editar Recetas</h2>
+
+		<div id="edit-result" style="display: none;">
+
+			<p>Receta Creada:</p>
+
+			<div class="salida"></div>
+
+		</div>
+
+		<div class="subSection" id="subSection-create-recipes">
+
+			<h3>Crear receta</h3>
+
+			<label for="create-recipe-inputName">
+				Nombre:
+			</label>
+			<input type="text" id="create-recipe-inputName">
+			<br>
+
+			<label>
+				Ingredientes:
+			</label>
+			<br>
+			<div
+				id="create-recipe-ingredients-inputs"
+				style="display: flex; flex-direction: column; width: 200px;">
+			</div>
+
+			<label>
+				Pasos:
+			</label>
+			<br>
+			<div
+				id="create-recipe-steps-inputs"
+				style="display: flex; flex-direction: column; width: 200px;">
+			</div>
+
+			<label for="create-recipe-inputTypeOfFood">
+				Tipo de comida:
+			</label>
+			<input type="text" id="create-recipe-inputTypeOfFood">
+			<br>
+
+			<label for="create-recipe-inputOrigin">
+				Origen:
+			</label>
+			<input type="text" id="create-recipe-inputOrigin">
+			<br>
+
+			<label for="create-recipe-inputAuthorId">
+				ID del autor:
+			</label>
+			<input type="number" id="create-recipe-inputAuthorId">
+			<br>
+
+			<button id="create-recipe-button">
+				Crear Receta
+			</button>
+
+		</div>
+
+	</div>
+
+
+
 
 	<!--suppress HtmlUnknownTarget -->
 	<script type="text/javascript" src="./bundle.js"></script>
