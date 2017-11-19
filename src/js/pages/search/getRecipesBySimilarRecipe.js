@@ -11,11 +11,11 @@ function isSimilar(receta, similarRecipe) {
 	/**
 	 * Obtenemos cuantos ingredientes tiene la receta
 	 */
-	const numIngredientes = receta.ingredient.length;
+	const numIngredientes = receta.ingredients.length;
 	/**
 	 * Obtenemos cuantos ingredientes tiene la receta introducida para comparar
 	 */
-	const numIngredientes2 = similarRecipe.ingredient.length;
+	const numIngredientes2 = similarRecipe.ingredients.length;
 	/**
 	 * Guardaremos en esta variable cuantos ingredientes coinciden entre ambas recetas
 	 * @type {number}
@@ -144,11 +144,15 @@ function getRecipesBySimilarRecipe(similarRecipe) {
 	 * función isSimilar para saber si hay recetas parecidas, en caso
 	 * afirmativo, añadimos esa receta a arraySimilarRecipes
 	 */
-	recetas.forEach((receta) => {
-		if (isSimilar(receta, similarRecipe)) {
-			arraySimilarRecipes.push(receta);
-		}
-	});
+	recetas
+		// Filtramos la propia receta para que no se muestre como similar a
+		// sí misma
+		.filter(it => it.idRecipe !== similarRecipe.idRecipe)
+		.forEach((receta) => {
+			if (isSimilar(receta, similarRecipe)) {
+				arraySimilarRecipes.push(receta);
+			}
+		});
 
 	return arraySimilarRecipes;
 }
