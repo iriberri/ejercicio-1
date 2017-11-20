@@ -18,7 +18,7 @@ function addOrEditIngredientInRecipe(recipe, newIngredient, existingIngredientIn
 		throw new Error(tipoDatoInvalido);
 	}
 	// Comprobamos que el index pasado por parámetro sea un número o indefinido
-	if (typeof existingIngredientIndex !== typeof 1 || existingIngredientIndex !== undefined) {
+	if (typeof existingIngredientIndex !== typeof 1 && existingIngredientIndex !== undefined) {
 		throw new Error(tipoDatoInvalido);
 	}
 	// Si el index es indefinido o sea mayor o igual que el numero de ingredientes,
