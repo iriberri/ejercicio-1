@@ -1,4 +1,5 @@
-const {getState} = require("../../appState");
+const { getState } = require("../../appState");
+const getRatings = require("../../support/getRatings");
 
 
 /**
@@ -11,6 +12,8 @@ function getHighestRatedRecipes() {
 	// Entero que nos marca la posición de la receta si ha sido encontrada o
 	// -1 si no se ha encontrado.
 	let encontrado;
+	// Array de los ratings para la receta
+	let rating;
 	// Todas las recetas que tenemos en el estado
 	const RECETAS = getState.recipes();
 	// Recorremos las recetas
@@ -21,7 +24,9 @@ function getHighestRatedRecipes() {
 		// Si se ha encontrado, evaluamos si su score es mayor que el elemento actual guardado y,
 		// si lo es, la sustituimos por la que tenemos guardada.
 		if (encontrado >= 0) {
-			if (highestRatedRecipesForTypeOfFood[encontrado].getRating() < RECETAS[i].getRating()) {
+			rating = getRatings(highestRatedRecipesForTypeOfFood[encontrado])
+				.sort((x, y) => x.score - y.score)[0];
+			if (rating < RECETAS[i].getRating()) {
 				highestRatedRecipesForTypeOfFood[encontrado] = RECETAS[i];
 			}
 		} else {

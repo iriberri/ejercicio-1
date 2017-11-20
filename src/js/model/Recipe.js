@@ -85,10 +85,6 @@ class Recipe {
 			throw new Error("El ID del autor es inválido");
 		}
 	}
-	getRating() {
-		const RATINGS = getState().ratings;
-		return RATINGS.find(x => x.idRecipe === this.idRecipe).score;
-	}
 }
 
 module.exports = Recipe;
