@@ -2,7 +2,6 @@ language: node
 node_js:
   - "8"
 install:
-  - npm install
+  - find ./src/js/**/*.spec.js
 script:
-  - npm run test
-  - npm run lint
+- true
